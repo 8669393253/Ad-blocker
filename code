@@ -1,0 +1,42 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      2024-10-29
+// @description  try to take over the world!
+// @author       You
+// @match        https://example.com/*  // Replace with your actual website URL
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+     // List of common ad selectors to remove
+    const adSelectors = [
+        '.ad',// General ad class
+        '.ads',// Another common ad class
+        '[id*="ad"]',// Elements with 'ad' in their id
+        '[class*="ad-"]',// Elements with 'ad-' in their class
+        'iframe[src*="ads"]'// Iframes with ads
+    ];
+
+    // Function to remove ads
+    function removeAds() {
+        console.log("Running universal ad remover");
+        adSelectors.forEach(selector => {
+            const ads = document.querySelectorAll(selector);
+            ads.forEach(ad => {
+                console.log("Removing ad:", ad);
+                ad.remove();
+            });
+        });
+    }
+
+    // Run the function on page load
+    window.onload = removeAds;
+
+    // Optional: Set up a MutationObserver to remove ads that load dynamically
+    const observer = new MutationObserver(removeAds);
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+})();
