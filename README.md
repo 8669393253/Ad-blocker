@@ -38,34 +38,6 @@ Before using this script, ensure that you have the following:
    - In the Tampermonkey Dashboard, click on the **+** (plus) icon or **Add a new script** button.
 
 4. **Paste the Script Logic**:
-   - Replace the default script with the following code:
-
-javascript
-// ==UserScript==
-// @name         Ad Blocker for Specific Page
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Block ads on a specific website
-// @author       Your Name
-// @match        https://example.com/*  // Replace with your actual website URL
-// @grant        none
-// ==/UserScript==
-
-(function() {
-    'use strict';
-
-    // Select and remove ad elements
-    const adSelectors = [
-        '.ad-class',      // Replace with actual ad classes/IDs
-        '#banner-ad',
-        '.popup-ad'
-    ];
-
-    adSelectors.forEach(selector => {
-        const ads = document.querySelectorAll(selector);
-        ads.forEach(ad => ad.remove());
-    });
-})();
 
 5. **Customize the Script**:
    - Replace `https://example.com/*` in the `@match` line with the URL of the website where you want to block ads.
